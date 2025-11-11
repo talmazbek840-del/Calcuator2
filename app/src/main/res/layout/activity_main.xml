@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    style="@style/Layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="40dp"
+    android:paddingBottom="20dp"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        style="@style/IOLayout"
+        android:orientation="vertical"
+        >
+        <EditText
+            android:id="@+id/mainInput"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:inputType="textMultiLine"
+            android:text=""
+            style="@style/inputStyle">
+
+        </EditText>
+        <TextView
+            android:id="@+id/output"
+            style="@style/inputStyle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="right">
+        </TextView>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/Layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+
+            >
+
+            <Button
+                android:id="@+id/AC"
+                style="@style/Button4"
+                android:text="@string/AC"
+                />
+
+            <Button
+                android:id="@+id/brackets"
+                style="@style/Button3"
+                android:text="@string/brackets" />
+
+            <Button
+                android:id="@+id/percent"
+                style="@style/Button3"
+                android:text="@string/percent" />
+
+
+            <Button
+                android:id="@+id/division"
+                style="@style/Button3"
+                android:contentDescription="division"
+                android:text="@string/division"
+
+                >
+
+            </Button>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/seven"
+                style="@style/Button"
+                android:text="@string/seven" />
+
+            <Button
+                android:id="@+id/eight"
+                style="@style/Button"
+                android:text="@string/Eight" />
+
+            <Button
+                android:id="@+id/nine"
+                style="@style/Button"
+                android:text="@string/nine" />
+
+            <Button
+                android:id="@+id/multiplication"
+                style="@style/Button3"
+                android:text="@string/multiplication" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/four"
+                style="@style/Button"
+                android:text="@string/four" />
+
+            <Button
+                android:id="@+id/five"
+                style="@style/Button"
+                android:text="@string/five" />
+
+            <Button
+                android:id="@+id/six"
+                style="@style/Button"
+                android:text="@string/six" />
+
+            <Button
+                android:id="@+id/minus"
+                style="@style/Button3"
+                android:text="@string/minus" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/one"
+                style="@style/Button"
+                android:text="1" />
+
+            <Button
+                android:id="@+id/two"
+                style="@style/Button"
+                android:text="2" />
+
+            <Button
+                android:id="@+id/three"
+                style="@style/Button"
+                android:text="@string/three" />
+            <Button
+                android:id="@+id/plus"
+                style="@style/Button3"
+                android:text="@string/plus" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/zero"
+                style="@style/Button"
+                android:text="0" />
+            <Button
+                android:id="@+id/dot"
+                style="@style/Button"
+                android:text="." />
+            <Button
+                android:id="@+id/delete"
+                style="@style/Button5"
+                android:background="@drawable/round_btn"
+                android:contentDescription="кнопка удаления"
+                android:scaleType="center"
+                android:text="@string/delete">
+            </Button>
+
+            <Button
+                android:id="@+id/equal"
+                style="@style/Button2"
+                android:text="@string/equal"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="button_back">#262626</color>
+    <color name="btn_text">#e2e2e2</color>
+    <color name="btn_equal_back">#f9f9f9</color>
+    <color name="btn_equal_text">#626262</color>
+
+    <color name="btn_symbol_back">#3b3b3b</color>
+    <color name="btn_symbol_text">#c0c0c0</color>
+
+    <color name="btn_AC_back">#a0a0a0</color>
+    <color name="btn_AC_text">#232323</color>
+
+    <color name="backgroundColor">#0e0e0e</color>
+
+
+</resources>

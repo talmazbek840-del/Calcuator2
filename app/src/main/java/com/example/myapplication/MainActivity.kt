@@ -53,8 +53,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.delete.setOnClickListener {
-            mainStr = mainStr.dropLast(1)
-            binding.mainInput.setText(mainStr)
+            val editable = binding.mainInput.text
+            if (editable.isNotEmpty()) {
+                editable.delete(editable.length - 1, editable.length)
+            }
         }
 
         binding.dot.setOnClickListener {
@@ -89,15 +91,21 @@ class MainActivity : AppCompatActivity() {
         binding.equal.setOnClickListener {
             inputEqual(mainStr)
         }
+
+        binding.mainInput.setOnClickListener {
+            // Move cursor to the end of the text
+            binding.mainInput.setSelection(binding.mainInput.text?.length ?: 0)
+            binding.mainInput.showSoftInputOnFocus=false
+        }
     }
 
     fun InputDigit(str: String, digit: Int) {
         if (str.length != 0 && str.last() == ')') {
             mainStr += "*$digit"
-            binding.mainInput.setText(mainStr)
+            binding.mainInput.append("*$digit")
         } else {
             mainStr += "$digit"
-            binding.mainInput.setText(mainStr)
+            binding.mainInput.append("$digit")
 
         }
 
@@ -145,18 +153,19 @@ class MainActivity : AppCompatActivity() {
     fun addOperationSymbol(op: String) {
         if (mainStr != "" && canAddOperation(mainStr.last())) {
             mainStr += op
-            binding.mainInput.setText(mainStr)
+
+            binding.mainInput.append(op)
         }
     }
     fun inputCloseBracket() {
         if (mainStr.last().isDigit() && bracketsOpen == true && canCloseBracket(mainStr)) {
             mainStr += ")"
-            binding.mainInput.setText(mainStr)
+            binding.mainInput.append(")")
             bracketsOpen = false
         } else if (mainStr.last() == '.' && bracketsOpen == true) {
 
             mainStr += "0)"
-            binding.mainInput.setText(mainStr)
+            binding.mainInput.append("0)")
             bracketsOpen = false
 
         }
@@ -166,7 +175,7 @@ class MainActivity : AppCompatActivity() {
             && bracketsOpen == false && mainStr.last() != '('
         ) {
             mainStr += "("
-            binding.mainInput.setText(mainStr)
+            binding.mainInput.append("(")
             bracketsOpen = true
             return true
 
@@ -174,13 +183,13 @@ class MainActivity : AppCompatActivity() {
                 .isDigit() || mainStr.last() == ')') && bracketsOpen == false
         ) {
             mainStr += "*("
-            binding.mainInput.setText(mainStr)
+            binding.mainInput.append("*(")
             bracketsOpen = true
             return true
 
         } else if (mainStr.last() == '.' && bracketsOpen == false) {
             mainStr += "0*("
-            binding.mainInput.setText(mainStr)
+            binding.mainInput.append("0*(")
             bracketsOpen = true
             return true
         } else return false
@@ -194,7 +203,7 @@ class MainActivity : AppCompatActivity() {
                 .isDigit() && !lastPart.contains(".")
         ) {
             mainStr += "."
-            binding.mainInput.setText(mainStr)
+            binding.mainInput.append(".")
         }
     }
 

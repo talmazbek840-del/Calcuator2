@@ -17,15 +17,13 @@
         >
         <EditText
             android:id="@+id/mainInput"
+            style="@style/inputStyle"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:gravity="end"
-            android:inputType="textMultiLine"
-            android:text=""
-            style="@style/inputStyle">
-
-        </EditText>
+            android:gravity="right"
+            android:editable="false"
+            />
         <TextView
             android:id="@+id/output"
             style="@style/inputStyle"
@@ -54,32 +52,25 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="horizontal"
-
             >
-
             <Button
                 android:id="@+id/AC"
                 style="@style/Button4"
                 android:text="@string/AC"
                 />
-
             <Button
                 android:id="@+id/brackets"
                 style="@style/Button3"
                 android:text="@string/brackets" />
-
             <Button
                 android:id="@+id/percent"
                 style="@style/Button3"
                 android:text="@string/percent" />
-
-
             <Button
                 android:id="@+id/division"
                 style="@style/Button3"
                 android:contentDescription="division"
                 android:text="@string/division"
-
                 >
 
             </Button>

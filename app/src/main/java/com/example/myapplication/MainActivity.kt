@@ -16,7 +16,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-
         binding.nine.setOnClickListener {
             InputDigit(mainStr, 9)
         }
@@ -47,9 +46,9 @@ class MainActivity : AppCompatActivity() {
         binding.zero.setOnClickListener {
             InputDigit(mainStr, 0)
         }
+
         binding.AC.setOnClickListener {
             inputAC()
-
         }
 
         binding.delete.setOnClickListener {
@@ -61,8 +60,6 @@ class MainActivity : AppCompatActivity() {
 
         binding.dot.setOnClickListener {
             inputDot()
-
-
         }
 
         binding.brackets.setOnClickListener {
@@ -76,7 +73,6 @@ class MainActivity : AppCompatActivity() {
         binding.minus.setOnClickListener {
             addOperationSymbol("-")
         }
-
         binding.multiplication.setOnClickListener {
             addOperationSymbol("*")
         }
@@ -86,7 +82,6 @@ class MainActivity : AppCompatActivity() {
         binding.percent.setOnClickListener {
             addOperationSymbol("%")
         }
-
 
         binding.equal.setOnClickListener {
             inputEqual(mainStr)
@@ -106,9 +101,7 @@ class MainActivity : AppCompatActivity() {
         } else {
             mainStr += "$digit"
             binding.mainInput.append("$digit")
-
         }
-
     }
 
     fun inputEqual(str: String) {
@@ -116,7 +109,6 @@ class MainActivity : AppCompatActivity() {
             val str = binding.mainInput.text.toString()
             val rpn = infixToRPN(str)
             val result = evaluateRPN(rpn)
-
             if (result % 1.0 == 0.0) {
                 binding.output.text = "${result.toInt()}"
             } else {
@@ -125,15 +117,17 @@ class MainActivity : AppCompatActivity() {
         } catch (e: Exception) {
             Toast.makeText(this, "Ошибка ввода данных", Toast.LENGTH_SHORT).show()
         }
-
     }
+
     fun isOperation(lastchar: Char): Boolean {
         return lastchar == '+' || lastchar == '-' || lastchar == '*' || lastchar == '/' || lastchar == '%'
     }
+
     fun canAddOperation(lastchar: Char): Boolean {
         return mainStr.length != 0 && (mainStr.last()
             .isDigit() || mainStr.last() == ')') && mainStr.last() != '('
     }
+
     fun canCloseBracket(str: String): Boolean {
         if (str == "") return false
         var counter = 0
@@ -143,33 +137,31 @@ class MainActivity : AppCompatActivity() {
                 counter = i
             }
         }
-
         print("counter $counter")
-
         listToken = str.slice(counter + 1 until str.length).split("+", "-", "*", "/", "%", "(", ")")
         print("list $listToken")
         return listToken.size > 1
     }
+
     fun addOperationSymbol(op: String) {
         if (mainStr != "" && canAddOperation(mainStr.last())) {
             mainStr += op
-
             binding.mainInput.append(op)
         }
     }
+
     fun inputCloseBracket() {
         if (mainStr.last().isDigit() && bracketsOpen == true && canCloseBracket(mainStr)) {
             mainStr += ")"
             binding.mainInput.append(")")
             bracketsOpen = false
         } else if (mainStr.last() == '.' && bracketsOpen == true) {
-
             mainStr += "0)"
             binding.mainInput.append("0)")
             bracketsOpen = false
-
         }
     }
+
     fun inputOpenBracket(): Boolean {
         if (mainStr.length == 0 || isOperation(mainStr.last())
             && bracketsOpen == false && mainStr.last() != '('
@@ -178,15 +170,14 @@ class MainActivity : AppCompatActivity() {
             binding.mainInput.append("(")
             bracketsOpen = true
             return true
-
-        } else if ((mainStr.last()
+        }
+        else if ((mainStr.last()
                 .isDigit() || mainStr.last() == ')') && bracketsOpen == false
         ) {
             mainStr += "*("
             binding.mainInput.append("*(")
             bracketsOpen = true
             return true
-
         } else if (mainStr.last() == '.' && bracketsOpen == false) {
             mainStr += "0*("
             binding.mainInput.append("0*(")
@@ -213,7 +204,6 @@ class MainActivity : AppCompatActivity() {
         binding.output.text = ""
         bracketsOpen = false
     }
-
 
 }
 

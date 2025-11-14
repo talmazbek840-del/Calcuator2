@@ -1,6 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+
     <style name="Base.Theme.MyApplication" parent="Theme.AppCompat.DayNight.NoActionBar">
+
         <item name="backgroundButtonColor1">@color/button_back</item>
         <item name="textButtonColor1">@color/btn_text</item>
         <item name="backgroundButtonColor2">@color/btn_equal_back</item>

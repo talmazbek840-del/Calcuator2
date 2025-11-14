@@ -6,187 +6,186 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    lateinit var numberLIST: List<String>
-    var mainStr: String = ""
-    var bracketsOpen = false
+
+    private lateinit var numberLIST: List<String>
+    private var mainStr: String = ""
+    private var bracketsOpen: Boolean = false
     private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        buttonClick()
+    }
 
+    private fun buttonClick() {
+        val digitButtons = listOf(
+            binding.BtnZeroDigit to 0,
+            binding.BtnOneDigit to 1,
+            binding.BtnTwoDigit to 2,
+            binding.BtnThreeDigit to 3,
+            binding.BtnFourDigit to 4,
+            binding.BtnFiveDigit to 5,
+            binding.BtnSixDigit to 6,
+            binding.BtnSevenDigit to 7,
+            binding.BtnEightDigit to 8,
+            binding.BtnNineDigit to 9
+        )
 
-        binding.nine.setOnClickListener {
-            InputDigit(mainStr, 9)
-        }
-        binding.eight.setOnClickListener {
-            InputDigit(mainStr, 8)
-        }
-        binding.seven.setOnClickListener {
-            InputDigit(mainStr, 7)
-        }
-        binding.six.setOnClickListener {
-            InputDigit(mainStr, 6)
-        }
-        binding.five.setOnClickListener {
-            InputDigit(mainStr, 5)
-        }
-        binding.four.setOnClickListener {
-            InputDigit(mainStr, 4)
-        }
-        binding.three.setOnClickListener {
-            InputDigit(mainStr, 3)
-        }
-        binding.two.setOnClickListener {
-            InputDigit(mainStr, 2)
-        }
-        binding.one.setOnClickListener {
-            InputDigit(mainStr, 1)
-        }
-        binding.zero.setOnClickListener {
-            InputDigit(mainStr, 0)
+        digitButtons.forEach { (button, digit) ->
+            button.setOnClickListener {
+                inputDigit(mainStr, digit)
+            }
         }
 
-        binding.AC.setOnClickListener {
+        binding.btnAC.setOnClickListener {
             inputAC()
         }
 
-        binding.delete.setOnClickListener {
-            val editable = binding.mainInput.text
+        binding.BtnSymbolDelete.setOnClickListener {
+            val editable = binding.MainExpressionInput.text
             if (editable.isNotEmpty()) {
                 editable.delete(editable.length - 1, editable.length)
             }
         }
 
-        binding.dot.setOnClickListener {
+        binding.BtnDotSymbol.setOnClickListener {
             inputDot()
         }
 
-        binding.brackets.setOnClickListener {
-            if (inputOpenBracket()) {
-            } else inputCloseBracket()
+        binding.btnBrackets.setOnClickListener {
+            if (!inputOpenBracket()) {
+                inputCloseBracket()
+            }
+        }
+        val operationButtons = mapOf(
+            binding.BtnPlusSymbol to "+",
+            binding.BtnMinusSymbol to "-",
+            binding.BtnMultiplicationSymbol to "*",
+            binding.BtnDivisionSymbol to "/",
+            binding.BtnPercentSymbol to "%"
+        )
+        operationButtons.forEach { (button, operator) ->
+            button.setOnClickListener {
+                addOperationSymbol(operator)
+            }
         }
 
-        binding.plus.setOnClickListener {
-            addOperationSymbol("+")
-        }
-        binding.minus.setOnClickListener {
-            addOperationSymbol("-")
-        }
-        binding.multiplication.setOnClickListener {
-            addOperationSymbol("*")
-        }
-        binding.division.setOnClickListener {
-            addOperationSymbol("/")
-        }
-        binding.percent.setOnClickListener {
-            addOperationSymbol("%")
+        binding.BtnEqualSymbol.setOnClickListener {
+            inputEqual()
         }
 
-        binding.equal.setOnClickListener {
-            inputEqual(mainStr)
-        }
-
-        binding.mainInput.setOnClickListener {
-            // Move cursor to the end of the text
-            binding.mainInput.setSelection(binding.mainInput.text?.length ?: 0)
-            binding.mainInput.showSoftInputOnFocus=false
+        binding.MainExpressionInput.setOnClickListener {
+            binding.MainExpressionInput.setSelection(binding.MainExpressionInput.text?.length ?: 0)
+            binding.MainExpressionInput.showSoftInputOnFocus = false
         }
     }
 
-    fun InputDigit(str: String, digit: Int) {
-        if (str.length != 0 && str.last() == ')') {
+    private fun inputDigit(str: String, digit: Int) {
+        if (str.isNotEmpty() && str.last() == ')') {
             mainStr += "*$digit"
-            binding.mainInput.append("*$digit")
+            binding.MainExpressionInput.append("*$digit")
         } else {
             mainStr += "$digit"
-            binding.mainInput.append("$digit")
+            binding.MainExpressionInput.append("$digit")
         }
     }
 
-    fun inputEqual(str: String) {
+    private fun inputEqual() {
         try {
-            val str = binding.mainInput.text.toString()
+            val str = binding.MainExpressionInput.text.toString()
             val rpn = infixToRPN(str)
             val result = evaluateRPN(rpn)
-            if (result % 1.0 == 0.0) {
-                binding.output.text = "${result.toInt()}"
+            if (kotlin.math.abs(result % 1.0) == 0.0) {
+                binding.TextviewOutputTxtResult.text = result.toInt().toString()
             } else {
-                binding.output.text = "${result}"
+                binding.TextviewOutputTxtResult.text = result.toString()
             }
         } catch (e: Exception) {
-            Toast.makeText(this, "Ошибка ввода данных", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this, getString(R.string.errorInput), Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
-    fun isOperation(lastchar: Char): Boolean {
-        return lastchar == '+' || lastchar == '-' || lastchar == '*' || lastchar == '/' || lastchar == '%'
+    private fun isOperation(lastChar: Char): Boolean {
+        return lastChar == '+' || lastChar == '-' || lastChar == '*' || lastChar == '/'
+                || lastChar == '%'
     }
 
-    fun canAddOperation(lastchar: Char): Boolean {
-        return mainStr.length != 0 && (mainStr.last()
+    private fun canAddOperation(): Boolean {
+        return mainStr.isNotEmpty() && (mainStr.last()
             .isDigit() || mainStr.last() == ')') && mainStr.last() != '('
     }
 
-    fun canCloseBracket(str: String): Boolean {
+    private fun canCloseBracket(str: String): Boolean {
         if (str == "") return false
         var counter = 0
-        val listToken: List<String>
         for (i in str.length - 1 downTo 0) {
             if (str[i] == '(') {
                 counter = i
             }
         }
         print("counter $counter")
-        listToken = str.slice(counter + 1 until str.length).split("+", "-", "*", "/", "%", "(", ")")
+        val listToken =
+            str.slice(counter + 1 until str.length).split("+", "-", "*", "/", "%", "(", ")")
         print("list $listToken")
         return listToken.size > 1
     }
 
-    fun addOperationSymbol(op: String) {
-        if (mainStr != "" && canAddOperation(mainStr.last())) {
+    private fun addOperationSymbol(op: String) {
+        if (mainStr != "" && canAddOperation()) {
             mainStr += op
-            binding.mainInput.append(op)
+            binding.MainExpressionInput.append(op)
         }
     }
 
-    fun inputCloseBracket() {
-        if (mainStr.last().isDigit() && bracketsOpen == true && canCloseBracket(mainStr)) {
-            mainStr += ")"
-            binding.mainInput.append(")")
-            bracketsOpen = false
-        } else if (mainStr.last() == '.' && bracketsOpen == true) {
-            mainStr += "0)"
-            binding.mainInput.append("0)")
-            bracketsOpen = false
+    private fun inputCloseBracket() {
+        when {
+            mainStr.last().isDigit() && bracketsOpen && canCloseBracket(mainStr) -> {
+                mainStr += ")"
+                binding.MainExpressionInput.append(")")
+                bracketsOpen = false
+            }
+
+            (mainStr.last() == '.' && bracketsOpen) -> {
+                mainStr += "0)"
+                binding.MainExpressionInput.append("0)")
+                bracketsOpen = false
+            }
         }
     }
 
-    fun inputOpenBracket(): Boolean {
-        if (mainStr.length == 0 || isOperation(mainStr.last())
-            && bracketsOpen == false && mainStr.last() != '('
-        ) {
-            mainStr += "("
-            binding.mainInput.append("(")
-            bracketsOpen = true
-            return true
+    private fun inputOpenBracket(): Boolean {
+        return when {
+            mainStr.isEmpty() || (isOperation(mainStr.last())
+                    && !bracketsOpen && mainStr.last() != '(') -> {
+                mainStr += "("
+                binding.MainExpressionInput.append("(")
+                bracketsOpen = true
+                true
+            }
+
+            (mainStr.last().isDigit() || mainStr.last() == ')') && !bracketsOpen -> {
+                mainStr += "*("
+                binding.MainExpressionInput.append("*(")
+                bracketsOpen = true
+                true
+            }
+
+            mainStr.last() == '.' && !bracketsOpen -> {
+                mainStr += "0*("
+                binding.MainExpressionInput.append("0*(")
+                bracketsOpen = true
+                true
+            }
+
+            else -> false
         }
-        else if ((mainStr.last()
-                .isDigit() || mainStr.last() == ')') && bracketsOpen == false
-        ) {
-            mainStr += "*("
-            binding.mainInput.append("*(")
-            bracketsOpen = true
-            return true
-        } else if (mainStr.last() == '.' && bracketsOpen == false) {
-            mainStr += "0*("
-            binding.mainInput.append("0*(")
-            bracketsOpen = true
-            return true
-        } else return false
     }
 
-    fun inputDot() {
+    private fun inputDot() {
         numberLIST = mainStr.split("+", "-", "*", "/", "%", "(", ")")
         val lastPart = numberLIST.lastOrNull() ?: ""
 
@@ -194,14 +193,14 @@ class MainActivity : AppCompatActivity() {
                 .isDigit() && !lastPart.contains(".")
         ) {
             mainStr += "."
-            binding.mainInput.append(".")
+            binding.MainExpressionInput.append(".")
         }
     }
 
-    fun inputAC() {
+    private fun inputAC() {
         mainStr = ""
-        binding.mainInput.setText("")
-        binding.output.text = ""
+        binding.MainExpressionInput.setText("")
+        binding.TextviewOutputTxtResult.text = ""
         bracketsOpen = false
     }
 

@@ -1,64 +1,76 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="Button_constrait"  >
+    <style name="BtnLayout">
+        <item name="colorOnBackground">?attr/backgroundColor</item>
+        <item name="android:paddingHorizontal">@dimen/layout_padding_horizontal</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">7</item>
+        <item name="android:layout_marginBottom">@dimen/button_area_margin_bottom</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="BtnMainStyle">
         <item name="layout_constraintHorizontal_weight">1</item>
+        <item name="android:layout_marginHorizontal">@dimen/button_margin_horizontal</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">0dp</item>
         <item name="layout_constraintDimensionRatio">1:1</item>
-        <item name="android:textSize">50sp</item>
+        <item name="android:textSize">@dimen/button_text_size</item>
         <item name="android:background">@drawable/round_btn</item>
         <item name="android:colorBackground">?attr/backgroundButtonColor1</item>
         <item name="android:textColor">?attr/textButtonColor1</item>
     </style>
 
-    <style name="Button2" parent="Button_constrait">
+    <style name="BtnEqualStyle" parent="BtnMainStyle">
         <item name="android:background">@drawable/round_btn2</item>
-        <item name="android:textSize">50sp</item>
         <item name="android:colorBackground">?attr/backgroundButtonColor2</item>
         <item name="android:textColor">?attr/textButtonColor2</item>
     </style>
 
-    <style name="Button3" parent="Button_constrait">
+    <style name="BtnSecondStyle" parent="BtnMainStyle">
         <item name="android:background">@drawable/round_btn3</item>
         <item name="android:colorBackground">?attr/backgroundButtonColor3</item>
         <item name="android:textColor">?attr/textButtonColor3</item>
     </style>
 
-    <style name="Button4" parent="Button_constrait">
+    <style name="BtnAcStyle" parent="BtnMainStyle">
         <item name="android:background">@drawable/round_btn4</item>
         <item name="android:colorBackground">?attr/backgroundButtonColor4</item>
         <item name="android:textColor">?attr/textButtonColor4</item>
     </style>
 
-    <style name="Button5" parent="Button_constrait">
-        <item name="android:textSize">30sp</item>
+    <style name="Btn_delete" parent="BtnMainStyle">
+        <item name="android:textSize">@dimen/button_delete_text_size</item>
     </style>
 
-    <style name="Layout">
-        <item name="colorOnBackground">?attr/backgroundColor</item>
-        <item name="android:paddingHorizontal">5dp</item>
-    </style>
-
-    <style name="inputStyle">
-            <item name="android:textSize">35sp</item>
-            <item name="android:layout_width">match_parent</item>
-            <item name="android:layout_height">0dp</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:layout_gravity">right</item>
-
-    </style>
-    <style name="IOLayout">
-        <item name="android:layout_height">0dp</item>
-        <item name="android:layout_weight" >5</item>
-        <item name="android:orientation">vertical</item>
+    <style name="TxtViewResultOutput">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:paddingHorizontal">10dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">right</item>
+        <item name="android:textSize">@dimen/button_text_size</item>
     </style>
-    <style name="Button_layout">
-        <item name="android:layout_marginBottom">2dp</item>
-        <item name="android:layout_marginTop">2dp</item>
 
+    <style name="EditTxtInput" parent="TxtViewResultOutput">
+        <item name="android:focusable">false</item>
+        <item name="android:inputType">textMultiLine</item>
+        <item name="android:textSize">@dimen/button_text_size</item>
+    </style>
+
+    <style name="IOLayout">
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_weight">5</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_width">match_parent</item>
+
+    </style>
+
+    <style name="ButtonRowLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">horizontal</item>
     </style>
 
 </resources>

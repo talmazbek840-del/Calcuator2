@@ -2,7 +2,6 @@ package com.example.myapplication
 
 import java.util.Stack
 
-//преобразование в обратную польскую запись
 fun infixToRPN(expression: String): List<String> {
     val output = mutableListOf<String>()
     val stack = Stack<Char>()
@@ -36,7 +35,6 @@ fun infixToRPN(expression: String): List<String> {
     return output
 }
 
-//вычислеие выражения
 fun evaluateRPN(rpn: List<String>): Double {
     val stack = Stack<Double>()
 
@@ -61,7 +59,6 @@ fun evaluateRPN(rpn: List<String>): Double {
 
 }
 
-//разделение на элементы
 fun tokenize(expression: String): List<String> {
     val regex = Regex("([+\\-×÷*/()%])")
     return expression
@@ -72,10 +69,8 @@ fun tokenize(expression: String): List<String> {
         .filter { it.isNotEmpty() }
 }
 
-// Проверка на оператор
 fun isOperator(c: Char) = c in listOf('+', '-', '×', '÷', '*', '/','%')
 
-// приоритеты
 fun precedence(c: Char): Int = when (c) {
     '+', '-' -> 1
     '×', '*', '÷', '/' ,'%'-> 2

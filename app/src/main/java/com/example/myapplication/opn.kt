@@ -5,9 +5,7 @@ import java.util.Stack
 fun infixToRPN(expression: String): List<String> {
     val output = mutableListOf<String>()
     val stack = Stack<Char>()
-
     val tokens = tokenize(expression)
-
     for (token in tokens) {
         when {
             token.isDoubleOrInt() -> output.add(token)
@@ -31,13 +29,11 @@ fun infixToRPN(expression: String): List<String> {
     while (stack.isNotEmpty()) {
         output.add(stack.pop().toString())
     }
-
     return output
 }
 
 fun evaluateRPN(rpn: List<String>): Double {
     val stack = Stack<Double>()
-
     for (token in rpn) {
         if (token.isDoubleOrInt()) {
             stack.push(token.toDouble())
@@ -56,7 +52,6 @@ fun evaluateRPN(rpn: List<String>): Double {
         }
     }
     return  stack.pop()
-
 }
 
 fun tokenize(expression: String): List<String> {

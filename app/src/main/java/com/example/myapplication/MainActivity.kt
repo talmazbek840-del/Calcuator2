@@ -21,16 +21,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun buttonClick() {
         val digitButtons = listOf(
-            binding.BtnZeroDigit to 0,
-            binding.BtnOneDigit to 1,
-            binding.BtnTwoDigit to 2,
-            binding.BtnThreeDigit to 3,
-            binding.BtnFourDigit to 4,
-            binding.BtnFiveDigit to 5,
-            binding.BtnSixDigit to 6,
-            binding.BtnSevenDigit to 7,
-            binding.BtnEightDigit to 8,
-            binding.BtnNineDigit to 9
+            binding.btnZeroDigit to 0,
+            binding.btnOneDigit to 1,
+            binding.btnTwoDigit to 2,
+            binding.btnThreeDigit to 3,
+            binding.btnFourDigit to 4,
+            binding.btnFiveDigit to 5,
+            binding.btnSixDigit to 6,
+            binding.btnSevenDigit to 7,
+            binding.btnEightDigit to 8,
+            binding.btnNineDigit to 9
         )
 
         digitButtons.forEach { (button, digit) ->
@@ -43,28 +43,28 @@ class MainActivity : AppCompatActivity() {
             inputAC()
         }
 
-        binding.BtnSymbolDelete.setOnClickListener {
-            val editable = binding.MainExpressionInput.text
+        binding.btnSymbolDelete.setOnClickListener {
+            val editable = binding.mainExpressionInput.text
             if (editable.isNotEmpty()) {
                 editable.delete(editable.length - 1, editable.length)
             }
         }
 
-        binding.BtnDotSymbol.setOnClickListener {
+        binding.btnDotSymbol.setOnClickListener {
             inputDot()
         }
 
-        binding.btnBrackets.setOnClickListener {
+        binding.btnBracketsSymbol.setOnClickListener {
             if (!inputOpenBracket()) {
                 inputCloseBracket()
             }
         }
         val operationButtons = mapOf(
-            binding.BtnPlusSymbol to "+",
-            binding.BtnMinusSymbol to "-",
-            binding.BtnMultiplicationSymbol to "*",
-            binding.BtnDivisionSymbol to "/",
-            binding.BtnPercentSymbol to "%"
+            binding.btnPlusSymbol to "+",
+            binding.btnMinusSymbol to "-",
+            binding.btnMultiplicationSymbol to "*",
+            binding.btnDivisionSymbol to "/",
+            binding.btnPercentSymbol to "%"
         )
         operationButtons.forEach { (button, operator) ->
             button.setOnClickListener {
@@ -72,35 +72,35 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        binding.BtnEqualSymbol.setOnClickListener {
+        binding.btnEqual.setOnClickListener {
             inputEqual()
         }
 
-        binding.MainExpressionInput.setOnClickListener {
-            binding.MainExpressionInput.setSelection(binding.MainExpressionInput.text?.length ?: 0)
-            binding.MainExpressionInput.showSoftInputOnFocus = false
+        binding.mainExpressionInput.setOnClickListener {
+            binding.mainExpressionInput.setSelection(binding.mainExpressionInput.text?.length ?: 0)
+            binding.mainExpressionInput.showSoftInputOnFocus = false
         }
     }
 
     private fun inputDigit(str: String, digit: Int) {
         if (str.isNotEmpty() && str.last() == ')') {
             mainStr += "*$digit"
-            binding.MainExpressionInput.append("*$digit")
+            binding.mainExpressionInput.append("*$digit")
         } else {
             mainStr += "$digit"
-            binding.MainExpressionInput.append("$digit")
+            binding.mainExpressionInput.append("$digit")
         }
     }
 
     private fun inputEqual() {
         try {
-            val str = binding.MainExpressionInput.text.toString()
+            val str = binding.mainExpressionInput.text.toString()
             val rpn = infixToRPN(str)
             val result = evaluateRPN(rpn)
             if (kotlin.math.abs(result % 1.0) == 0.0) {
-                binding.TextviewOutputTxtResult.text = result.toInt().toString()
+                binding.textviewOutputTxtResult.text = result.toInt().toString()
             } else {
-                binding.TextviewOutputTxtResult.text = result.toString()
+                binding.textviewOutputTxtResult.text = result.toString()
             }
         } catch (e: Exception) {
             Toast.makeText(
@@ -127,17 +127,15 @@ class MainActivity : AppCompatActivity() {
                 counter = i
             }
         }
-        print("counter $counter")
         val listToken =
             str.slice(counter + 1 until str.length).split("+", "-", "*", "/", "%", "(", ")")
-        print("list $listToken")
         return listToken.size > 1
     }
 
     private fun addOperationSymbol(op: String) {
         if (mainStr != "" && canAddOperation()) {
             mainStr += op
-            binding.MainExpressionInput.append(op)
+            binding.mainExpressionInput.append(op)
         }
     }
 
@@ -145,13 +143,13 @@ class MainActivity : AppCompatActivity() {
         when {
             mainStr.last().isDigit() && bracketsOpen && canCloseBracket(mainStr) -> {
                 mainStr += ")"
-                binding.MainExpressionInput.append(")")
+                binding.mainExpressionInput.append(")")
                 bracketsOpen = false
             }
 
             (mainStr.last() == '.' && bracketsOpen) -> {
                 mainStr += "0)"
-                binding.MainExpressionInput.append("0)")
+                binding.mainExpressionInput.append("0)")
                 bracketsOpen = false
             }
         }
@@ -162,21 +160,21 @@ class MainActivity : AppCompatActivity() {
             mainStr.isEmpty() || (isOperation(mainStr.last())
                     && !bracketsOpen && mainStr.last() != '(') -> {
                 mainStr += "("
-                binding.MainExpressionInput.append("(")
+                binding.mainExpressionInput.append("(")
                 bracketsOpen = true
                 true
             }
 
             (mainStr.last().isDigit() || mainStr.last() == ')') && !bracketsOpen -> {
                 mainStr += "*("
-                binding.MainExpressionInput.append("*(")
+                binding.mainExpressionInput.append("*(")
                 bracketsOpen = true
                 true
             }
 
             mainStr.last() == '.' && !bracketsOpen -> {
                 mainStr += "0*("
-                binding.MainExpressionInput.append("0*(")
+                binding.mainExpressionInput.append("0*(")
                 bracketsOpen = true
                 true
             }
@@ -193,14 +191,14 @@ class MainActivity : AppCompatActivity() {
                 .isDigit() && !lastPart.contains(".")
         ) {
             mainStr += "."
-            binding.MainExpressionInput.append(".")
+            binding.mainExpressionInput.append(".")
         }
     }
 
     private fun inputAC() {
         mainStr = ""
-        binding.MainExpressionInput.setText("")
-        binding.TextviewOutputTxtResult.text = ""
+        binding.mainExpressionInput.setText("")
+        binding.textviewOutputTxtResult.text = ""
         bracketsOpen = false
     }
 

@@ -3,22 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingTop="40dp"
-    android:paddingBottom="20dp"
+    style="@style/MainLayout"
     tools:context=".MainActivity">
 
-    <LinearLayout style="@style/IOLayout">
+    <LinearLayout
+        style="@style/IOLayout">
 
         <EditText
-            android:id="@+id/MainExpressionInput"
+            android:id="@+id/mainExpressionInput"
             style="@style/EditTxtInput"
             android:hint="@string/zero" />
 
         <TextView
-            android:id="@+id/TextviewOutputTxtResult"
+            android:id="@+id/textviewOutputTxtResult"
             style="@style/TxtViewResultOutput" />
 
     </LinearLayout>
@@ -29,230 +26,232 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout style="@style/ButtonRowLayout">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            style="@style/ButtonRowLayout">
 
             <Button
                 android:id="@+id/btn_AC"
                 style="@style/BtnAcStyle"
-                android:layout_marginTop="1dp"
-                android:layout_marginBottom="1dp"
                 android:text="@string/AC"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toStartOf="@+id/btnBrackets"
+                app:layout_constraintEnd_toStartOf="@+id/btnBracketsSymbol"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/btnBrackets"
+                android:id="@+id/btnBracketsSymbol"
                 style="@style/BtnSecondStyle"
                 android:text="@string/brackets"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/BtnPercentSymbol"
+                app:layout_constraintEnd_toStartOf="@+id/btnPercentSymbol"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/btn_AC"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/BtnPercentSymbol"
+                android:id="@+id/btnPercentSymbol"
                 style="@style/BtnSecondStyle"
-                android:layout_marginTop="1dp"
-                android:layout_marginBottom="1dp"
                 android:text="@string/percent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/BtnDivisionSymbol"
+                app:layout_constraintEnd_toStartOf="@+id/btnDivisionSymbol"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/btnBrackets"
+                app:layout_constraintStart_toEndOf="@+id/btnBracketsSymbol"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/BtnDivisionSymbol"
+                android:id="@+id/btnDivisionSymbol"
                 style="@style/BtnSecondStyle"
                 android:importantForAccessibility="yes"
                 android:text="@string/division"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/BtnPercentSymbol"
+                app:layout_constraintStart_toEndOf="@+id/btnPercentSymbol"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout style="@style/ButtonRowLayout">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            style="@style/ButtonRowLayout">
 
             <Button
-                android:id="@+id/BtnSevenDigit"
+                android:id="@+id/btnSevenDigit"
                 style="@style/BtnMainStyle"
                 android:text="@string/seven"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/BtnEightDigit"
+                app:layout_constraintEnd_toStartOf="@+id/btnEightDigit"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/BtnEightDigit"
+                android:id="@+id/btnEightDigit"
                 style="@style/BtnMainStyle"
                 android:text="@string/Eight"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/BtnNineDigit"
+                app:layout_constraintEnd_toStartOf="@+id/btnNineDigit"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/BtnSevenDigit"
+                app:layout_constraintStart_toEndOf="@+id/btnSevenDigit"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/BtnNineDigit"
+                android:id="@+id/btnNineDigit"
                 style="@style/BtnMainStyle"
                 android:text="@string/nine"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/BtnMultiplicationSymbol"
+                app:layout_constraintEnd_toStartOf="@+id/btnMultiplicationSymbol"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/BtnEightDigit"
+                app:layout_constraintStart_toEndOf="@+id/btnEightDigit"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/BtnMultiplicationSymbol"
+                android:id="@+id/btnMultiplicationSymbol"
                 style="@style/BtnSecondStyle"
                 android:text="@string/multiplication"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/BtnNineDigit"
+                app:layout_constraintStart_toEndOf="@+id/btnNineDigit"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout style="@style/ButtonRowLayout">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            style="@style/ButtonRowLayout">
 
             <Button
-                android:id="@+id/BtnFourDigit"
+                android:id="@+id/btnFourDigit"
                 style="@style/BtnMainStyle"
                 android:text="@string/four"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/BtnFiveDigit"
+                app:layout_constraintEnd_toStartOf="@+id/btnFiveDigit"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/BtnFiveDigit"
+                android:id="@+id/btnFiveDigit"
                 style="@style/BtnMainStyle"
                 android:text="@string/five"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/BtnSixDigit"
+                app:layout_constraintEnd_toStartOf="@+id/btnSixDigit"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/BtnFourDigit"
+                app:layout_constraintStart_toEndOf="@+id/btnFourDigit"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/BtnSixDigit"
+                android:id="@+id/btnSixDigit"
                 style="@style/BtnMainStyle"
                 android:text="@string/six"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/BtnMinusSymbol"
+                app:layout_constraintEnd_toStartOf="@+id/btnMinusSymbol"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/BtnFiveDigit"
+                app:layout_constraintStart_toEndOf="@+id/btnFiveDigit"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.333" />
 
             <Button
-                android:id="@+id/BtnMinusSymbol"
+                android:id="@+id/btnMinusSymbol"
                 style="@style/BtnSecondStyle"
                 android:text="@string/minus"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/BtnSixDigit"
+                app:layout_constraintStart_toEndOf="@+id/btnSixDigit"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout style="@style/ButtonRowLayout">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            style="@style/ButtonRowLayout">
 
             <Button
-                android:id="@+id/BtnOneDigit"
+                android:id="@+id/btnOneDigit"
                 style="@style/BtnMainStyle"
                 android:text="@string/one"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/BtnTwoDigit"
+                app:layout_constraintEnd_toStartOf="@+id/btnTwoDigit"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/BtnTwoDigit"
+                android:id="@+id/btnTwoDigit"
                 style="@style/BtnMainStyle"
                 android:text="@string/two"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/BtnThreeDigit"
+                app:layout_constraintEnd_toStartOf="@+id/btnThreeDigit"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/BtnOneDigit"
+                app:layout_constraintStart_toEndOf="@+id/btnOneDigit"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/BtnThreeDigit"
+                android:id="@+id/btnThreeDigit"
                 style="@style/BtnMainStyle"
                 android:text="@string/three"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/BtnPlusSymbol"
+                app:layout_constraintEnd_toStartOf="@+id/btnPlusSymbol"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/BtnTwoDigit"
+                app:layout_constraintStart_toEndOf="@+id/btnTwoDigit"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/BtnPlusSymbol"
+                android:id="@+id/btnPlusSymbol"
                 style="@style/BtnSecondStyle"
                 android:text="@string/plus"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/BtnThreeDigit"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toEndOf="@+id/btnThreeDigit"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.333" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout style="@style/ButtonRowLayout">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            style="@style/ButtonRowLayout">
 
             <Button
-                android:id="@+id/BtnZeroDigit"
+                android:id="@+id/btnZeroDigit"
                 style="@style/BtnMainStyle"
                 android:text="@string/zero"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/BtnDotSymbol"
+                app:layout_constraintEnd_toStartOf="@+id/btnDotSymbol"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/BtnDotSymbol"
+                android:id="@+id/btnDotSymbol"
                 style="@style/BtnMainStyle"
                 android:text="@string/dot"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/BtnSymbolDelete"
+                app:layout_constraintEnd_toStartOf="@+id/btnSymbolDelete"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/BtnZeroDigit"
+                app:layout_constraintStart_toEndOf="@+id/btnZeroDigit"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/BtnSymbolDelete"
+                android:id="@+id/btnSymbolDelete"
                 style="@style/Btn_delete"
                 android:text="@string/delete"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/BtnEqualSymbol"
+                app:layout_constraintEnd_toStartOf="@+id/btnEqual"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/BtnDotSymbol"
+                app:layout_constraintStart_toEndOf="@+id/btnDotSymbol"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/BtnEqualSymbol"
+                android:id="@+id/btnEqual"
                 style="@style/BtnEqualStyle"
                 android:text="@string/equal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/BtnSymbolDelete"
+                app:layout_constraintStart_toEndOf="@+id/btnSymbolDelete"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

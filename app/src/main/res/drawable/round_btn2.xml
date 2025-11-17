@@ -2,5 +2,4 @@
 
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval"
-    android:tint="?attr/backgroundButtonColor2"
-    />
+    android:tint="?attr/backgroundButtonColor2" />

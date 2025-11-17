@@ -5,7 +5,7 @@
     <string name="brackets">( )</string>
     <string name="percent">%</string>
     <string name="seven">7</string>
-    <string name="Eight">8</string>
+    <string name="eight">8</string>
     <string name="multiplication">\u00D7</string>
     <string name="six">6</string>
     <string name="five">5</string>
@@ -17,7 +17,6 @@
     <string name="zero">0</string>
     <string name="dot">.</string>
     <string name="equal">=</string>
-    <string name="backspace">Backspace</string>
     <string name="division">÷</string>
     <string name="nine">9</string>
     <string name="delete">⌫</string>

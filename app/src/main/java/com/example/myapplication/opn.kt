@@ -43,8 +43,8 @@ fun evaluateRPN(rpn: List<String>): Double {
             val result = when (token[0]) {
                 '+' -> a + b
                 '-' -> a - b
-                '×', '*' -> a * b
-                '÷', '/' -> a / b
+                '*' -> a * b
+                '/' -> a / b
                 '%' -> a/100.0*b
                 else -> throw IllegalArgumentException("Unknown operator: ${token[0]}")
             }
@@ -55,7 +55,7 @@ fun evaluateRPN(rpn: List<String>): Double {
 }
 
 fun tokenize(expression: String): List<String> {
-    val regex = Regex("([+\\-×÷*/()%])")
+    val regex = Regex("([+\\-*/()%])")
     return expression
         .replace(" ", "")
         .replace(regex, " $1 ")
@@ -64,11 +64,11 @@ fun tokenize(expression: String): List<String> {
         .filter { it.isNotEmpty() }
 }
 
-fun isOperator(c: Char) = c in listOf('+', '-', '×', '÷', '*', '/','%')
+fun isOperator(c: Char) = c in listOf('+', '-', '*', '/','%')
 
 fun precedence(c: Char): Int = when (c) {
     '+', '-' -> 1
-    '×', '*', '÷', '/' ,'%'-> 2
+    '*', '/' ,'%'-> 2
     else -> 0
 }
 

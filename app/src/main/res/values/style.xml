@@ -10,7 +10,7 @@
         <item name="android:orientation">vertical</item>
     </style>
 
-    <style name="BtnMainStyle">
+    <style name="BaseBtn">
         <item name="layout_constraintHorizontal_weight">1</item>
         <item name="android:layout_marginHorizontal">@dimen/button_margin_horizontal</item>
         <item name="android:layout_width">0dp</item>
@@ -22,29 +22,29 @@
         <item name="android:textColor">?attr/textButtonColor1</item>
     </style>
 
-    <style name="BtnEqualStyle" parent="BtnMainStyle">
+    <style name="EqualBtn" parent="BaseBtn">
         <item name="android:background">@drawable/round_btn2</item>
         <item name="android:colorBackground">?attr/backgroundButtonColor2</item>
         <item name="android:textColor">?attr/textButtonColor2</item>
     </style>
 
-    <style name="BtnSecondStyle" parent="BtnMainStyle">
+    <style name="OperatorBtn" parent="BaseBtn">
         <item name="android:background">@drawable/round_btn3</item>
         <item name="android:colorBackground">?attr/backgroundButtonColor3</item>
         <item name="android:textColor">?attr/textButtonColor3</item>
     </style>
 
-    <style name="BtnAcStyle" parent="BtnMainStyle">
+    <style name="AcBtn" parent="BaseBtn">
         <item name="android:background">@drawable/round_btn4</item>
         <item name="android:colorBackground">?attr/backgroundButtonColor4</item>
         <item name="android:textColor">?attr/textButtonColor4</item>
     </style>
 
-    <style name="Btn_delete" parent="BtnMainStyle">
+    <style name="DeleteBtn" parent="BaseBtn">
         <item name="android:textSize">@dimen/button_delete_text_size</item>
     </style>
 
-    <style name="TxtViewResultOutput">
+    <style name="OutputTextView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_weight">1</item>
@@ -52,7 +52,7 @@
         <item name="android:textSize">@dimen/button_text_size</item>
     </style>
 
-    <style name="EditTxtInput" parent="TxtViewResultOutput">
+    <style name="InputEditText" parent="OutputTextView">
         <item name="android:focusable">false</item>
         <item name="android:inputType">textMultiLine</item>
         <item name="android:textSize">@dimen/button_text_size</item>
